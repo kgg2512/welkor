@@ -22,7 +22,7 @@ G2 Company Ltd — Project #5. C2B + C2G.
 ## Run
 
 ```bash
-cd welco
+cd welkor
 npm install
 npm run dev        # http://localhost:3000 → redirects to /en
 npm run build      # production build (static where possible)
@@ -34,7 +34,7 @@ Supabase is optional. To wire real data later, copy `.env.example` to
 ## Structure
 
 ```
-welco/
+welkor/
 ├─ messages/            en.json, ko.json   (UI strings)
 ├─ supabase/schema.sql  target data model
 ├─ docs/FOUNDATION.md   strategy, legal model, roadmap
