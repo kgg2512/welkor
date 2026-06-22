@@ -3,7 +3,7 @@ import { routing } from "@/i18n/routing";
 import { COUNTRIES } from "@/data/countries";
 import { VISA_TRACKS } from "@/data/visas";
 
-const BASE = "https://welco-liard.vercel.app";
+const BASE = "https://welkor.vercel.app";
 
 /**
  * Full sitemap with hreflang alternates for both locales. SEO is WelKor's main

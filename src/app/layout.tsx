@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 
-const SITE_URL = "https://welco-liard.vercel.app";
+const SITE_URL = "https://welkor.vercel.app";
 const DESCRIPTION =
   "Step-by-step settlement platform for foreigners coming to Korea: from your home country through visa, housing, jobs, tax and community — in English and Korean.";
 
