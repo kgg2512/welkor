@@ -132,7 +132,7 @@
 
 1. **타깃 세그먼트 확정** — 추천: E-7/E-2 + D-2 유학생(1·2순위). E-9는 법적 제외 확정. → 회장 승인?
 2. **P1 MVP 범위 확정** — 위 §5(정보+부동산+세무+커뮤니티)로 착수? 더 좁힐지(예: 부동산 단일 수직 먼저)?
-3. **도메인/브랜딩** — 정식 명칭 = **Welcome to Korea → 줄여서 WelKor(웰코)**. 현재 라이브 = **https://welkor.vercel.app** (Vercel 프로젝트명 `welkor`, production 브랜치 `master`, Root Directory `welkor`, GitHub 자동배포 연결). 커스텀 도메인 후보: welkor.kr / welcometokorea 등 확보 여부 = 회장 액션.
+3. **도메인/브랜딩** — 정식 명칭 = **Welcome to Korea → 줄여서 WelKor(웰코)**. 현재 라이브 = **https://welkor.vercel.app** (Vercel 프로젝트명 `welkor`, production 브랜치 `master`, Root Directory `welkor`). **GitHub 자동배포 활성(2026-06-24): master 푸시 → welkor 자동배포.** 커스텀 도메인 후보: welkor.kr / welcometokorea 등 확보 여부 = 회장 액션.
 4. **기술 스택** — Next.js+Supabase+Vercel로 진행 확인.
 5. **다음 산출물** — (a) MVP 실제 착수(코드) vs (b) 상세 PRD·데이터모델·화면설계 먼저.
 
