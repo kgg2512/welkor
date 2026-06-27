@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LISTINGS } from "@/data/listings";
 import { HOUSING_PORTALS, REGION_PRICES, SHORT_STAY } from "@/data/housing";
 import { t as localized, type Listing } from "@/data/types";
+import { Link } from "@/i18n/navigation";
 
 const DEAL_LABEL: Record<Listing["dealType"], { en: string; ko: string }> = {
   jeonse: { en: "Jeonse", ko: "전세" },
@@ -137,6 +138,17 @@ export default async function HousingPage({
             </article>
           ))}
         </div>
+      </section>
+
+      {/* Connect with a licensed agent */}
+      <section className="flex flex-col items-start gap-3 rounded-xl border border-brand/30 bg-brand-light/40 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-slate-700">{t("connectNote")}</p>
+        <Link
+          href="/connect?topic=housing"
+          className="shrink-0 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
+        >
+          {t("connectAgent")}
+        </Link>
       </section>
 
       {/* Short-stay for visitors */}

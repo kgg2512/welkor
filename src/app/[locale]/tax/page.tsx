@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { TAX_GUIDES } from "@/data/tax";
 import { getVisaTrack } from "@/data/visas";
 import { t as localized } from "@/data/types";
+import { Link } from "@/i18n/navigation";
 
 export default async function TaxPage({
   params,
@@ -45,12 +46,12 @@ export default async function TaxPage({
       </section>
 
       <section className="rounded-xl border border-rose-200 bg-rose-50 p-5">
-        <button
-          type="button"
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
+        <Link
+          href="/connect?topic=tax"
+          className="inline-block rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
         >
           {t("connectAccountant")}
-        </button>
+        </Link>
         <p className="mt-3 text-xs text-rose-900">{t("disclaimer")}</p>
       </section>
     </div>

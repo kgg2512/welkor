@@ -83,6 +83,7 @@
     "manwon": "만원",
     "englishContract": "영문 계약서",
     "connectAgent": "공인중개사와 연결",
+    "connectNote": "마음에 드는 매물이 있거나 외국인 친화 중개사가 필요하세요? 검증된 공인중개사와 연결해 드립니다.",
     "priceTitle": "원룸 월세 대략 시세",
     "priceNote": "2025년 원룸(월세) 대략 참고치입니다. 단위는 만원. 실제 금액은 포털에서 반드시 확인하세요.",
     "regionCol": "지역",
@@ -181,8 +182,48 @@
     "replies": "답글",
     "ask": "질문하기"
   },
+  "connect": {
+    "title": "전문가 연결·문의",
+    "subtitle": "필요한 것을 알려주세요. 검증된 면허 전문가와 연결해 드리거나 이메일로 답변드립니다. WelKor는 연결만 하며, 중개하거나 비용을 받지 않습니다.",
+    "topicLabel": "어떤 도움이 필요하세요?",
+    "topic_housing": "주거 — 공인중개사 연결",
+    "topic_tax": "세무 — 세무사 연결",
+    "topic_admin": "비자/서류 — 행정사 연결",
+    "topic_community": "커뮤니티 질문",
+    "topic_general": "기타",
+    "nameLabel": "이름",
+    "emailLabel": "이메일",
+    "nationalityLabel": "국적",
+    "visaLabel": "비자 종류",
+    "visaUnknown": "모름 / 아직 없음",
+    "optional": "선택",
+    "messageLabel": "내용",
+    "messagePlaceholder": "필요하신 내용을 간단히 적어주세요.",
+    "consentPre": "본인은",
+    "consentPrivacy": "개인정보처리방침",
+    "consentAnd": "및",
+    "consentTerms": "이용약관",
+    "consentPost": "에 동의하며, 요청 관련 연락을 받는 데 동의합니다.",
+    "submit": "요청 보내기",
+    "submitting": "보내는 중…",
+    "successTitle": "요청이 접수되었습니다",
+    "successBody": "감사합니다. 요청을 검토한 뒤 이메일로 연락드리겠습니다.",
+    "backHome": "홈으로",
+    "errorBody": "문제가 발생했습니다. 다시 시도하시거나 이메일로 직접 문의해 주세요.",
+    "disclaimer": "WelKor는 연결자이며 중개·알선자가 아닙니다. 모든 서비스는 귀하와 면허 전문가가 직접 계약합니다. E-9 취업은 취급하지 않으며 결과를 보장하지 않습니다."
+  },
+  "legal": {
+    "updated": "최종 수정일",
+    "privacyTitle": "개인정보처리방침",
+    "privacyIntro": "WelKor가 개인정보를 어떻게 수집·이용·보호하는지 안내합니다.",
+    "termsTitle": "이용약관",
+    "termsIntro": "정보·연결 플랫폼 WelKor 이용에 관한 약관입니다."
+  },
   "footer": {
     "disclaimer": "WelKor는 정보·연결 플랫폼입니다. 공인중개사·세무사·행정사가 아닙니다. 서비스 연결은 검증된 면허 전문가가 제공합니다.",
+    "contact": "전문가 연결",
+    "privacy": "개인정보처리방침",
+    "terms": "이용약관",
     "rights": "G2 Company Ltd"
   }
 }

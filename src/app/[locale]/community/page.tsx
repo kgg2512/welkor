@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { COMMUNITY_POSTS } from "@/data/community";
 import { t as localized } from "@/data/types";
+import { Link } from "@/i18n/navigation";
 
 export default async function CommunityPage({
   params,
@@ -18,12 +19,12 @@ export default async function CommunityPage({
           <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
           <p className="mt-2 text-sm text-slate-600">{t("subtitle")}</p>
         </div>
-        <button
-          type="button"
+        <Link
+          href="/connect?topic=community"
           className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
         >
           {t("ask")}
-        </button>
+        </Link>
       </header>
 
       <section className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white">

@@ -83,6 +83,7 @@
     "manwon": "만원",
     "englishContract": "English lease",
     "connectAgent": "Connect with a licensed agent",
+    "connectNote": "Found something, or want a foreigner-friendly agent? We'll connect you with a verified licensed agent.",
     "priceTitle": "Approximate one-room rent",
     "priceNote": "Rough 2025 references for a one-room (원룸), monthly rent. Amounts in 만원 (1 만원 = about ₩10,000). Always confirm on the portals.",
     "regionCol": "Region",
@@ -181,8 +182,48 @@
     "replies": "replies",
     "ask": "Ask a question"
   },
+  "connect": {
+    "title": "Get connected",
+    "subtitle": "Tell us what you need. We'll connect you with a verified licensed professional, or get back to you by email. WelKor connects — it never brokers or charges you.",
+    "topicLabel": "What do you need help with?",
+    "topic_housing": "Housing — connect with a licensed agent",
+    "topic_tax": "Tax — connect with a tax accountant",
+    "topic_admin": "Visa / documents — connect with an administrative agent",
+    "topic_community": "Community question",
+    "topic_general": "Something else",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "nationalityLabel": "Nationality",
+    "visaLabel": "Your visa",
+    "visaUnknown": "Not sure / not yet",
+    "optional": "Optional",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Briefly describe what you're looking for.",
+    "consentPre": "I agree to the",
+    "consentPrivacy": "Privacy Policy",
+    "consentAnd": "and",
+    "consentTerms": "Terms",
+    "consentPost": ", and to be contacted about my request.",
+    "submit": "Send request",
+    "submitting": "Sending…",
+    "successTitle": "Request received",
+    "successBody": "Thank you. We'll review your request and get back to you by email.",
+    "backHome": "Back to home",
+    "errorBody": "Something went wrong. Please try again, or email us directly.",
+    "disclaimer": "WelKor is a connector, not a broker. Any service is contracted directly between you and the licensed professional. We do not handle E-9 employment and do not guarantee any outcome."
+  },
+  "legal": {
+    "updated": "Last updated",
+    "privacyTitle": "Privacy Policy",
+    "privacyIntro": "How WelKor collects, uses, and protects your personal information.",
+    "termsTitle": "Terms of Service",
+    "termsIntro": "The terms for using WelKor — an information and connection platform."
+  },
   "footer": {
     "disclaimer": "WelKor is an information and connection platform. It is not a licensed real-estate, tax or administrative agent. Service connections are provided by verified licensed professionals.",
+    "contact": "Get connected",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
     "rights": "G2 Company Ltd"
   }
 }

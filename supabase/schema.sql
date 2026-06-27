@@ -103,3 +103,34 @@ create policy "own requests" on public.connection_requests
 create policy "posts readable" on public.community_posts for select using (true);
 create policy "own posts write" on public.community_posts
   for insert with check (auth.uid() = author_id);
+
+-- =====================================================================
+-- leads : connection/interest capture from the public connect form.
+-- WelKor = connector only. Stores ordinary PII under explicit consent;
+-- NEVER 고유식별정보 (외국인등록번호/passport) — 개인정보보호법 §24.
+-- Data hosted in Seoul (ap-northeast-2) → no cross-border transfer (MVP).
+-- =====================================================================
+create table if not exists public.leads (
+  id           uuid primary key default gen_random_uuid(),
+  topic        text not null check (topic in ('housing','tax','admin','community','general')),
+  name         text not null,
+  email        text not null,
+  visa_type    text,
+  nationality  text,
+  message      text,
+  locale       text not null default 'en',
+  consent      boolean not null default false,
+  source_path  text,
+  created_at   timestamptz not null default now()
+);
+
+-- RLS: anon/auth may INSERT a lead only WITH consent; nobody may SELECT through
+-- the public roles (only service_role, which bypasses RLS, can read). This keeps
+-- every lead private from other site visitors even though the anon key is public.
+alter table public.leads enable row level security;
+
+create policy "anon may submit a lead"
+  on public.leads
+  for insert
+  to anon, authenticated
+  with check (consent = true);
