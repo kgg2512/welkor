@@ -13,6 +13,9 @@ export default function SiteFooter() {
           <Link href="/connect" className="hover:text-brand">
             {t("contact")}
           </Link>
+          <Link href="/pros" className="hover:text-brand">
+            {t("pros")}
+          </Link>
           <Link href="/privacy" className="hover:text-brand">
             {t("privacy")}
           </Link>

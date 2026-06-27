@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { getSupabase } from "@/lib/supabase";
+import { submitForm } from "@/lib/submit";
 import { LEGAL_CONTACT } from "@/data/legal";
 import { VISA_TRACKS } from "@/data/visas";
 import { t as localized } from "@/data/types";
@@ -31,6 +31,7 @@ export default function ConnectForm({
   const [consent, setConsent] = useState(false);
   const [company, setCompany] = useState(""); // honeypot
   const [status, setStatus] = useState<Status>("idle");
+  const [rateLimited, setRateLimited] = useState(false);
 
   const canSubmit =
     status !== "submitting" && consent && name.trim() !== "" && email.trim() !== "";
@@ -46,6 +47,7 @@ export default function ConnectForm({
     }
 
     setStatus("submitting");
+    setRateLimited(false);
 
     const payload = {
       topic,
@@ -59,19 +61,19 @@ export default function ConnectForm({
       source_path: typeof window !== "undefined" ? window.location.pathname : null,
     };
 
-    const supabase = getSupabase();
+    const result = await submitForm("lead", payload);
 
-    if (supabase) {
-      const { error } = await supabase.from("leads").insert(payload);
-      if (error) {
-        setStatus("error");
-        return;
-      }
+    if (result.ok) {
       setStatus("success");
       return;
     }
+    if (result.rateLimited) {
+      setRateLimited(true);
+      setStatus("error");
+      return;
+    }
 
-    // Fallback when the database is not configured: open the user's mail client.
+    // Backend unreachable / not configured → fall back to the user's mail client.
     const subject = `[WelKor] ${topic} — ${name.trim()}`;
     const lines = [
       `Topic: ${topic}`,
@@ -240,7 +242,9 @@ export default function ConnectForm({
       </label>
 
       {status === "error" && (
-        <p className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">{t("errorBody")}</p>
+        <p className="rounded-lg bg-rose-50 p-3 text-sm text-rose-700">
+          {rateLimited ? t("rateLimited") : t("errorBody")}
+        </p>
       )}
 
       <button

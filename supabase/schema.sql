@@ -124,13 +124,50 @@ create table if not exists public.leads (
   created_at   timestamptz not null default now()
 );
 
--- RLS: anon/auth may INSERT a lead only WITH consent; nobody may SELECT through
--- the public roles (only service_role, which bypasses RLS, can read). This keeps
--- every lead private from other site visitors even though the anon key is public.
+-- RLS: writes go ONLY through the `submit` edge function (service_role, which
+-- bypasses RLS). Public roles have no table privileges. Earlier MVP allowed a
+-- direct anon insert; that was revoked once the rate-limited edge function
+-- became the single write path (see migration harden_single_write_path).
 alter table public.leads enable row level security;
+revoke all on public.leads from anon, authenticated;
 
-create policy "anon may submit a lead"
-  on public.leads
-  for insert
-  to anon, authenticated
-  with check (consent = true);
+-- =====================================================================
+-- professional_applications : licensed pros apply to join the marketplace.
+-- Verified out-of-band, then promoted into public.professionals
+-- (license_verified=true). WelKor = connector only; no fee splitting.
+-- =====================================================================
+create table if not exists public.professional_applications (
+  id            uuid primary key default gen_random_uuid(),
+  kind          text not null check (kind in ('realtor','tax_accountant','admin_agent')),
+  name          text not null,
+  org           text,
+  region        text,
+  languages     text[] not null default '{}',
+  license_no    text not null,
+  contact_email text not null,
+  contact_phone text,
+  intro         text,
+  locale        text not null default 'en',
+  consent       boolean not null default false,
+  status        text not null default 'pending' check (status in ('pending','approved','rejected')),
+  created_at    timestamptz not null default now()
+);
+
+-- =====================================================================
+-- submission_log : IP rate-limit ledger for public submissions. ip_hash is a
+-- salted SHA-256 of the client IP (no raw IP stored). Written by the edge fn.
+-- =====================================================================
+create table if not exists public.submission_log (
+  id         bigint generated always as identity primary key,
+  ip_hash    text not null,
+  kind       text not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists submission_log_ip_time_idx
+  on public.submission_log (ip_hash, created_at desc);
+
+-- Both tables: service_role only (edge fn / dashboard). RLS on, grants revoked.
+alter table public.professional_applications enable row level security;
+alter table public.submission_log           enable row level security;
+revoke all on public.professional_applications from anon, authenticated;
+revoke all on public.submission_log           from anon, authenticated;

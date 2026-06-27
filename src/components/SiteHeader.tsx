@@ -38,6 +38,12 @@ export default function SiteHeader() {
             </Link>
           ))}
           <Link
+            href="/pros"
+            className="rounded border border-brand/40 px-2 py-1 text-xs font-medium text-brand hover:bg-brand-light/40"
+          >
+            {t("pros")}
+          </Link>
+          <Link
             href={pathname}
             locale={other}
             className="rounded border px-2 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100"

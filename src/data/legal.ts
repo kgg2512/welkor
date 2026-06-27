@@ -206,3 +206,78 @@ export const TERMS: LegalSection[] = [
     ],
   },
 ];
+
+export const PRO_TERMS: LegalSection[] = [
+  {
+    heading: {
+      en: "1. Who can join",
+      ko: "1. 입점 자격",
+    },
+    body: [
+      {
+        en: "Only individuals holding a valid Korean professional license may join: a licensed real-estate agent (공인중개사), tax accountant (세무사), or administrative agent (행정사). You must enter your real license number.",
+        ko: "유효한 한국 면허 보유자만 입점할 수 있습니다: 공인중개사·세무사·행정사. 실제 면허번호를 정확히 기재해야 합니다.",
+      },
+    ],
+  },
+  {
+    heading: {
+      en: "2. WelKor connects — it does not broker",
+      ko: "2. WelKor는 연결자 (중개자 아님)",
+    },
+    body: [
+      {
+        en: "WelKor lists you and connects interested users to you. All professional services and contracts are between you and the user directly. WelKor is not a party, takes no brokerage commission, and does not split your fees.",
+        ko: "WelKor는 회원님을 게시하고 관심 있는 이용자를 연결합니다. 모든 전문 서비스·계약은 회원님과 이용자 간 직접 체결됩니다. WelKor는 당사자가 아니며 중개보수를 받거나 회원님의 보수를 분배받지 않습니다.",
+      },
+    ],
+  },
+  {
+    heading: {
+      en: "3. Verification",
+      ko: "3. 검증",
+    },
+    body: [
+      {
+        en: "Your application is reviewed and your license is verified before you appear in the public directory. False or expired license information results in immediate removal and may be reported to the relevant authority.",
+        ko: "입점 신청은 검토되며 면허가 확인된 후에야 공개 디렉토리에 노출됩니다. 허위·만료 면허 정보는 즉시 퇴출되며 관계 기관에 신고될 수 있습니다.",
+      },
+    ],
+  },
+  {
+    heading: {
+      en: "4. Your obligations",
+      ko: "4. 전문가의 의무",
+    },
+    body: [
+      {
+        en: "Provide accurate information, comply with the laws governing your license, serve users professionally, and protect any personal data users share with you under the applicable privacy laws.",
+        ko: "정확한 정보를 제공하고, 면허 관련 법규를 준수하며, 이용자를 전문적으로 응대하고, 이용자가 제공한 개인정보를 관련 법령에 따라 보호해야 합니다.",
+      },
+    ],
+  },
+  {
+    heading: {
+      en: "5. Fees",
+      ko: "5. 비용",
+    },
+    body: [
+      {
+        en: "Joining is currently free. Any future listing or advertising fee will be introduced only with separate, clear notice and your consent. WelKor will never take a per-case referral fee or a share of your professional fees.",
+        ko: "현재 입점은 무료입니다. 향후 입점료·광고료는 별도의 명확한 고지와 동의를 거쳐서만 도입됩니다. WelKor는 건당 소개 수수료나 회원님의 보수 분배를 절대 받지 않습니다.",
+      },
+    ],
+  },
+  {
+    heading: {
+      en: "6. Liability & termination",
+      ko: "6. 책임 및 해지",
+    },
+    body: [
+      {
+        en: "WelKor is not responsible for the services you provide or for disputes between you and users. Either party may end the listing at any time. Governing law: Republic of Korea. Questions: " + LEGAL_CONTACT + ".",
+        ko: "WelKor는 회원님이 제공하는 서비스나 회원님과 이용자 간 분쟁에 대해 책임지지 않습니다. 양 당사자는 언제든 게시를 종료할 수 있습니다. 준거법: 대한민국. 문의: " + LEGAL_CONTACT + ".",
+      },
+    ],
+  },
+];
