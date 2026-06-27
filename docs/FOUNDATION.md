@@ -143,3 +143,20 @@
 이용약관(플랫폼=연결자·중개주체 아님 명시) · 개인정보처리방침(한/영, 외국인등록번호 별도 동의·국외이전) · 전문가 입점계약서 · 민감정보 동의서 · 구직 연결 약관 · 다국어 면책고지.
 
 > ⚠️ 상용 출시 전 행정사법·세무사법·공인중개사법·직업안정법(E-9) 법무법인 자문 필수 (CLO 권고).
+
+---
+
+## 12. 구현 현황 (2026-06-28 — 양면 마켓플레이스 골격 완성, 라이브)
+
+**수요측(이용자) + 공급측(전문가) 양면이 라이브.** 수익화는 비목표(회장 지시) — 구조·기능 완성이 목표.
+
+- **수요측:** `/connect` 리드폼(이름·이메일·국적·비자·문의+동의) → `leads`. tax·community·housing CTA + 디렉토리에서 유입. `/privacy`·`/terms`(영/한, PIPA).
+- **공급측:** `/pros` 검증 전문가 디렉토리(`professionals` where `license_verified=true`, 안전 컬럼만) + `/pros/apply` 입점 신청(`professional_applications`) + `/pros/terms` 입점약관 + 입점계약서 초안 `docs/legal/PRO_ONBOARDING_AGREEMENT.md`. 헤더/푸터 진입점. 현재 검증 전문가 0 → 정직한 빈 상태("1호 입점").
+- **운영 흐름:** 신청(pending) → WelKor 면허 수동검증 → `professionals`에 `license_verified=true`로 승격 → 디렉토리 노출. (승격 UI는 미구현 — 현재 Supabase 대시보드/service_role로 수동.)
+- **보안 단일 쓰기경로:** 모든 공개 제출(리드+입점) = Supabase Edge Function `submit` 단독 경유 — IP 시간당 rate-limit(salted hash, raw IP 미저장) + 입력검증/길이제한 + consent 강제 + service_role insert. anon 직접 테이블 쓰기 전부 회수. `professionals`는 anon에 안전 컬럼만 grant(면허번호·연락처 무인증 조회 차단 — CISO 게이트 블로커 수정·재검증). 🔒 게이트: CLO 6/6 PASS, CISO 블로커1 수정 후 PASS.
+
+### ⚠️ 잔여 리스크 / 회장 액션 (2026-06-28)
+1. **Turnstile 미활성 = rate-limit IP 위조 가능(🟡).** 에지펑션은 `x-forwarded-for` 기반이라 헤더 위조 시 한도 우회 가능. Turnstile은 코드상 준비됨(조건부) — **회장이 Cloudflare Turnstile 사이트 생성 → `NEXT_PUBLIC_TURNSTILE_SITE_KEY`(Vercel) + `TURNSTILE_SECRET`(Supabase 에지펑션 secret) 설정 시 자동 활성.** 그 전까지 IP 한도는 베이스라인(나이브 플러드만 차단).
+2. **유료화 전 법무법인 자문 필수(deferred).** 회장이 수익화 비목표 승인(2026-06-28) → 입점료·수수료·1:1 지정매칭 도입 시점으로 연기. 트리거: `PRO_ONBOARDING_AGREEMENT.md` §8.
+3. **전문가 승격 관리 UI 미구현** — 신청 검토/승격은 현재 수동(service_role). 신청 유입 시 관리 화면 필요.
+4. **커스텀 도메인 welkor.kr** (회장 액션).
