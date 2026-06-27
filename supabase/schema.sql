@@ -92,7 +92,14 @@ alter table public.listings      enable row level security;
 alter table public.professionals enable row level security;
 
 create policy "listings are public"      on public.listings      for select using (true);
+
+-- professionals: RLS filters ROWS (verified only) but NOT columns. anon must
+-- therefore be granted only the safe directory columns — license_no/contact are
+-- NEVER selectable via the public anon key (migration fix_professionals_column_exposure).
 create policy "verified pros are public"  on public.professionals for select using (license_verified = true);
+revoke select on public.professionals from anon, authenticated;
+grant select (id, kind, name, org, region, languages, license_verified, created_at)
+  on public.professionals to anon, authenticated;
 
 create policy "own profile"  on public.profiles
   for all using (auth.uid() = id) with check (auth.uid() = id);

@@ -254,6 +254,10 @@ export const PRO_TERMS: LegalSection[] = [
         en: "Provide accurate information, comply with the laws governing your license, serve users professionally, and protect any personal data users share with you under the applicable privacy laws.",
         ko: "정확한 정보를 제공하고, 면허 관련 법규를 준수하며, 이용자를 전문적으로 응대하고, 이용자가 제공한 개인정보를 관련 법령에 따라 보호해야 합니다.",
       },
+      {
+        en: "When a user shares personal data with you directly, you act as an independent data controller and are solely responsible for complying with the personal-information laws that apply to you.",
+        ko: "이용자가 회원님에게 개인정보를 직접 제공하는 경우, 회원님은 독립적인 개인정보처리자로서 해당 개인정보 관련 법령 준수에 단독 책임을 집니다.",
+      },
     ],
   },
   {
