@@ -44,6 +44,10 @@ export const metadata: Metadata = {
       "Visa, housing, jobs, tax and community for foreigners settling in Korea.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+  },
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
