@@ -1,4 +1,4 @@
-import type { LocalizedText } from "./types";
+import type { LocalizedText } from "../types";
 
 /**
  * Tourism content for visitors (5-1).

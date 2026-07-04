@@ -1,18 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  WORK_ELIGIBILITY,
-  JOB_FIELDS,
-  rankChannels,
-  getEligibility,
-  getField,
-  EPS,
-  WORK24,
-  KOTRA_GTC,
-  HIKOREA,
-  type WorkPermission,
-} from "@/data/jobs";
+import { getWorkEligibility, getJobFields, rankChannels, getEligibility, getField } from "@/data";
+import { EPS, WORK24, KOTRA_GTC, HIKOREA, type WorkPermission } from "@/data/demo/jobs";
 import { t as localized, type LocalizedText } from "@/data/types";
 
 interface Labels {
@@ -62,6 +52,9 @@ export default function JobsExplorer({
 }) {
   const [visaCode, setVisaCode] = useState<string>(""); // "" = not chosen / unknown
   const [fieldId, setFieldId] = useState<string>(""); // "" = any
+
+  const WORK_ELIGIBILITY = getWorkEligibility();
+  const JOB_FIELDS = getJobFields();
 
   const eligibility = useMemo(() => getEligibility(visaCode), [visaCode]);
   const field = useMemo(() => getField(fieldId), [fieldId]);

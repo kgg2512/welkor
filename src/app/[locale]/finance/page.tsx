@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { FINANCE_CATEGORIES, FSS_ENG } from "@/data/finance";
+import { getFinanceCategories } from "@/data";
+import { FSS_ENG } from "@/data/demo/finance";
 import { t as localized } from "@/data/types";
 
 export default async function FinancePage({
@@ -10,6 +11,7 @@ export default async function FinancePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("finance");
+  const FINANCE_CATEGORIES = getFinanceCategories();
 
   return (
     <div className="space-y-10">

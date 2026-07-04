@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { COUNTRIES } from "@/data/countries";
+import { getCountries } from "@/data";
 import { t as localized } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
@@ -11,6 +11,7 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("home");
+  const COUNTRIES = getCountries();
 
   const why = [
     { title: t("why1Title"), body: t("why1Body") },

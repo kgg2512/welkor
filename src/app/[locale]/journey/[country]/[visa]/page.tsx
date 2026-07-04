@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { COUNTRIES, getCountry } from "@/data/countries";
-import { getVisaTrack, VISA_TRACKS } from "@/data/visas";
+import { getCountries, getCountry, getVisaTrack, getVisaTracks } from "@/data";
 import { t as localized, type StepCategory } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
@@ -18,8 +17,9 @@ const CATEGORY_STYLE: Record<StepCategory, string> = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return COUNTRIES.flatMap((c) =>
-    VISA_TRACKS.map((v) => ({ country: c.slug, visa: v.slug })),
+  const visaTracks = getVisaTracks();
+  return getCountries().flatMap((c) =>
+    visaTracks.map((v) => ({ country: c.slug, visa: v.slug })),
   );
 }
 

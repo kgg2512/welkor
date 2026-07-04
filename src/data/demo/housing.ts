@@ -1,4 +1,4 @@
-import type { LocalizedText } from "./types";
+import type { LocalizedText } from "../types";
 
 /**
  * Housing context (6).

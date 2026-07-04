@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { LISTINGS } from "@/data/listings";
-import { HOUSING_PORTALS, REGION_PRICES, SHORT_STAY } from "@/data/housing";
+import { getListings, getHousingPortals, getRegionPrices, getShortStay } from "@/data";
 import { t as localized, type Listing } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
@@ -18,6 +17,10 @@ export default async function HousingPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("housing");
+  const LISTINGS = getListings();
+  const HOUSING_PORTALS = getHousingPortals();
+  const REGION_PRICES = getRegionPrices();
+  const SHORT_STAY = getShortStay();
 
   return (
     <div className="space-y-10">

@@ -1,4 +1,4 @@
-import type { TaxGuide } from "./types";
+import type { TaxGuide } from "../types";
 
 /**
  * Tax GUIDES only — general information, not tax representation.

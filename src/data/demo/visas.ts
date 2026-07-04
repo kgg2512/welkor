@@ -1,4 +1,4 @@
-import type { VisaTrack } from "./types";
+import type { VisaTrack } from "../types";
 
 /**
  * The Settlement Journey Engine data.

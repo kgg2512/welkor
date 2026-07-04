@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { COUNTRIES } from "@/data/countries";
-import { VISA_TRACKS } from "@/data/visas";
+import { getCountries, getVisaTracks } from "@/data";
 
 const BASE = "https://welkor.vercel.app";
 
@@ -21,9 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tax",
     "/community",
   ];
-  const countryPaths = COUNTRIES.map((c) => `/journey/${c.slug}`);
-  const visaPaths = COUNTRIES.flatMap((c) =>
-    VISA_TRACKS.map((v) => `/journey/${c.slug}/${v.slug}`),
+  const countries = getCountries();
+  const visaTracks = getVisaTracks();
+  const countryPaths = countries.map((c) => `/journey/${c.slug}`);
+  const visaPaths = countries.flatMap((c) =>
+    visaTracks.map((v) => `/journey/${c.slug}/${v.slug}`),
   );
   const paths = [...staticPaths, ...countryPaths, ...visaPaths];
 

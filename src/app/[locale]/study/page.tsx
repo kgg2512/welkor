@@ -1,14 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import {
-  STUDY_FIELDS,
-  UNIVERSITIES,
-  STUDENT_DOCS,
-  STUDY_IN_KOREA,
-  GKS,
-  TOPIK,
-  HIKOREA,
-  type FieldArea,
-} from "@/data/study";
+import { getStudyFields, getUniversities, getStudentDocs } from "@/data";
+import { STUDY_IN_KOREA, GKS, TOPIK, HIKOREA, type FieldArea } from "@/data/demo/study";
 import { t as localized } from "@/data/types";
 
 const AREA_LABEL: Record<FieldArea, { en: string; ko: string }> = {
@@ -40,6 +32,9 @@ export default async function StudyPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("study");
+  const STUDY_FIELDS = getStudyFields();
+  const UNIVERSITIES = getUniversities();
+  const STUDENT_DOCS = getStudentDocs();
 
   return (
     <div className="space-y-10">

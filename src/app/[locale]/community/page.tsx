@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { COMMUNITY_POSTS } from "@/data/community";
+import { getCommunityPosts } from "@/data";
 import { t as localized } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
@@ -11,6 +11,7 @@ export default async function CommunityPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("community");
+  const COMMUNITY_POSTS = getCommunityPosts();
 
   return (
     <div className="space-y-8">

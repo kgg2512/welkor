@@ -1,4 +1,4 @@
-import type { LocalizedText } from "./types";
+import type { LocalizedText } from "../types";
 
 /**
  * Jobs — "직업정보제공형" (job-information curation), NOT job placement.

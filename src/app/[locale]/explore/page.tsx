@@ -1,11 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import {
-  TRAVEL_REGIONS,
-  BOOKING_CHANNELS,
-  VISIT_KOREA,
-  K_ETA,
-  type SpotCategory,
-} from "@/data/tourism";
+import { getTravelRegions, getBookingChannels } from "@/data";
+import { VISIT_KOREA, K_ETA, type SpotCategory } from "@/data/demo/tourism";
 import { t as localized } from "@/data/types";
 
 const CAT_LABEL: Record<SpotCategory, { en: string; ko: string }> = {
@@ -35,6 +30,8 @@ export default async function ExplorePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("explore");
+  const TRAVEL_REGIONS = getTravelRegions();
+  const BOOKING_CHANNELS = getBookingChannels();
 
   const stays = BOOKING_CHANNELS.filter((c) => c.kind === "stay");
   const activities = BOOKING_CHANNELS.filter((c) => c.kind !== "stay");

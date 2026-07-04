@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { submitForm } from "@/lib/submit";
 import { LEGAL_CONTACT } from "@/data/legal";
-import { VISA_TRACKS } from "@/data/visas";
+import { getVisaTracks } from "@/data";
 import { t as localized } from "@/data/types";
 
 type Topic = "housing" | "tax" | "admin" | "community" | "general";
@@ -21,6 +21,7 @@ export default function ConnectForm({
   initialTopic: Topic;
 }) {
   const t = useTranslations("connect");
+  const VISA_TRACKS = getVisaTracks();
 
   const [topic, setTopic] = useState<Topic>(initialTopic);
   const [name, setName] = useState("");

@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { TAX_GUIDES } from "@/data/tax";
-import { getVisaTrack } from "@/data/visas";
+import { getTaxGuides, getVisaTrack } from "@/data";
 import { t as localized } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
@@ -12,6 +11,7 @@ export default async function TaxPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("tax");
+  const TAX_GUIDES = getTaxGuides();
 
   return (
     <div className="space-y-8">

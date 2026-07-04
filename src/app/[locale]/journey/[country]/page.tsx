@@ -1,13 +1,12 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { COUNTRIES, getCountry } from "@/data/countries";
-import { PURPOSE_GROUPS } from "@/data/purposes";
+import { getCountries, getCountry, getPurposeGroups } from "@/data";
 import { t as localized } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return COUNTRIES.map((c) => ({ country: c.slug }));
+  return getCountries().map((c) => ({ country: c.slug }));
 }
 
 export default async function PurposePage({
@@ -20,6 +19,7 @@ export default async function PurposePage({
   const t = await getTranslations("select");
   const c = getCountry(country);
   const countryName = c ? localized(c.name, locale) : country;
+  const PURPOSE_GROUPS = getPurposeGroups();
 
   const cardClass =
     "group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:border-brand hover:shadow-md";

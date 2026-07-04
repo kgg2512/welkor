@@ -1,4 +1,4 @@
-import type { Country } from "./types";
+import type { Country } from "../types";
 
 /**
  * Origin countries — the journey now starts BEFORE the visa, from "where are

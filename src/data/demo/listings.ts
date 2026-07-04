@@ -1,4 +1,4 @@
-import type { Listing } from "./types";
+import type { Listing } from "../types";
 
 /**
  * Mock real-estate listings. In production these come from Supabase and from

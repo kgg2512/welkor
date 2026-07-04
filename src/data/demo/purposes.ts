@@ -1,4 +1,4 @@
-import type { LocalizedText } from "./types";
+import type { LocalizedText } from "../types";
 
 /**
  * Purpose-first intake.
