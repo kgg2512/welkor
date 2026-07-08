@@ -78,13 +78,16 @@ Deno.serve(async (req) => {
     const TOPICS = ["housing", "tax", "admin", "community", "general"];
     if (!TOPICS.includes(p.topic)) return json({ error: "bad topic" }, 400);
     if (!p.name || !p.email) return json({ error: "missing fields" }, 400);
+    // 민감정보(국적·체류자격)는 별도 동의(sensitive_consent)가 있을 때만 저장한다.
+    // 서버측 강제(PIPA §23) — 클라이언트가 조작돼도 미동의 시 저장되지 않도록 심층방어.
+    const sensitiveOk = payload.sensitive_consent === true;
     table = "leads";
     row = {
       topic: p.topic,
       name: str(p.name, 200),
       email: str(p.email, 200),
-      nationality: str(p.nationality, 100),
-      visa_type: str(p.visa_type, 40),
+      nationality: sensitiveOk ? str(p.nationality, 100) : null,
+      visa_type: sensitiveOk ? str(p.visa_type, 40) : null,
       message: str(p.message, 4000),
       locale: p.locale === "ko" ? "ko" : "en",
       consent: true,
