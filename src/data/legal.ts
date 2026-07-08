@@ -7,11 +7,14 @@ import type { LocalizedText } from "@/data/types";
  * first-party MVP drafts; a law firm review is required before commercial
  * launch (FOUNDATION §11).
  *
- * Data hosting region is Seoul (Supabase ap-northeast-2), so personal data is
- * stored inside Korea — no cross-border transfer for the MVP.
+ * The database (Supabase, ap-northeast-2 Seoul) stores personal data inside
+ * Korea. However, the app is hosted on Vercel (Vercel Inc., USA): serverless
+ * execution, access logs (incl. client IP) and usage analytics are processed
+ * on US infrastructure. This IS a cross-border transfer and is disclosed in
+ * PRIVACY §4 per PIPA §28-8 (recipient, country, items, purpose, retention).
  */
 
-export const LEGAL_UPDATED = "2026-06-28";
+export const LEGAL_UPDATED = "2026-07-07";
 export const LEGAL_CONTACT = "kgg2512@gmail.com";
 export const LEGAL_ENTITY = "G2 Company Ltd";
 
@@ -37,8 +40,8 @@ export const PRIVACY: LegalSection[] = [
         ko: "외국인등록번호·여권번호 등 고유식별정보는 수집하지 않습니다. 어떤 양식에도 입력하지 마십시오.",
       },
       {
-        en: "Basic, anonymous usage analytics may be collected to improve the service, via Vercel Analytics, which collects no personal identifiers.",
-        ko: "서비스 개선을 위해 익명의 기본 이용 통계가 수집될 수 있습니다(Vercel Analytics 사용, 개인 식별 정보 미수집).",
+        en: "To improve the service we collect basic, aggregate usage analytics via Vercel Analytics (Vercel Inc., USA). It is designed to be aggregate and not to identify you individually, but because it runs on US infrastructure and may process technical data such as IP address and User-Agent, it is treated as a cross-border transfer and disclosed in §4.",
+        ko: "서비스 개선을 위해 Vercel Analytics(Vercel Inc., 미국)를 통해 기본적인 집계 이용 통계를 수집합니다. 개인을 식별하지 않는 집계 형태로 설계되어 있으나, 미국 인프라에서 실행되며 IP 주소·User-Agent 등 기술적 정보가 처리될 수 있어 국외 이전 사항으로 보아 §4에 고지합니다.",
       },
     ],
   },
@@ -81,8 +84,12 @@ export const PRIVACY: LegalSection[] = [
         ko: "특정 전문가와의 연결에 동의하신 경우에 한해 해당 전문가에게 정보를 제공합니다. WelKor는 귀하와 전문가 간 계약의 당사자가 아닙니다.",
       },
       {
-        en: "Hosting and database are provided by Supabase, with servers located in Seoul, Republic of Korea. Your data is not transferred overseas for the MVP.",
-        ko: "호스팅·데이터베이스는 Supabase(서울 리전)에서 처리되며, 데이터는 대한민국 내에 보관됩니다. MVP 단계에서 개인정보의 국외 이전은 없습니다.",
+        en: "Processing consignment (처리위탁): We entrust the storage and operation of your data to the following processors, under data-processing terms — (1) Supabase — database storage; region Seoul, Republic of Korea (data stored inside Korea); (2) Vercel Inc. — application hosting and usage analytics.",
+        ko: "처리위탁: 아래 수탁사에 데이터의 저장·운영을 처리위탁 계약에 따라 위탁합니다 — (1) Supabase — 데이터베이스 저장, 서울(대한민국) 리전(데이터는 국내 보관); (2) Vercel Inc. — 애플리케이션 호스팅 및 이용 통계.",
+      },
+      {
+        en: "Cross-border transfer (국외이전, PIPA §28-8): Because the app is hosted on Vercel Inc., some personal data is transferred to and processed in the United States. • Recipient: Vercel Inc. • Country: United States • Items: access logs including client IP address and User-Agent, and aggregate usage-analytics data • Purpose: web hosting, service operation, and usage statistics • Retention/use period: for the duration of the hosting/analytics service (or until you withdraw consent). By using this service you are notified of and consent to this transfer. The database itself (name, email, nationality, visa, message you submit) remains stored in Korea (Supabase, Seoul).",
+        ko: "국외이전(개인정보보호법 §28-8): 본 서비스는 Vercel Inc.가 호스팅하므로 일부 개인정보가 미국으로 이전·처리됩니다. • 이전받는 자: Vercel Inc. • 이전 국가: 미국 • 이전 항목: 접속 로그(클라이언트 IP 주소·User-Agent) 및 집계 이용 통계 데이터 • 이전 목적: 웹 호스팅·서비스 운영·이용 통계 • 보유·이용 기간: 호스팅/통계 서비스 이용 기간(또는 동의 철회 시까지). 본 서비스를 이용하심으로써 위 국외 이전을 고지받고 이에 동의하는 것으로 봅니다. 귀하가 제출하는 데이터베이스 정보(이름·이메일·국적·비자·문의 내용)는 국내(Supabase 서울)에 저장됩니다.",
       },
     ],
   },

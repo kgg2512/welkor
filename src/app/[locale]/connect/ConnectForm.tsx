@@ -30,6 +30,8 @@ export default function ConnectForm({
   const [visa, setVisa] = useState("");
   const [message, setMessage] = useState("");
   const [consent, setConsent] = useState(false);
+  // Separate, optional consent for sensitive info (nationality/visa) — PIPA §23.
+  const [sensitiveConsent, setSensitiveConsent] = useState(false);
   const [company, setCompany] = useState(""); // honeypot
   const [status, setStatus] = useState<Status>("idle");
   const [rateLimited, setRateLimited] = useState(false);
@@ -50,15 +52,18 @@ export default function ConnectForm({
     setStatus("submitting");
     setRateLimited(false);
 
+    // Only collect nationality/visa (sensitive info) when the user gives the
+    // separate optional consent. Otherwise drop them (data minimization).
     const payload = {
       topic,
       name: name.trim(),
       email: email.trim(),
-      nationality: nationality.trim() || null,
-      visa_type: visa || null,
+      nationality: sensitiveConsent ? nationality.trim() || null : null,
+      visa_type: sensitiveConsent ? visa || null : null,
       message: message.trim() || null,
       locale,
       consent,
+      sensitive_consent: sensitiveConsent,
       source_path: typeof window !== "undefined" ? window.location.pathname : null,
     };
 
@@ -80,8 +85,8 @@ export default function ConnectForm({
       `Topic: ${topic}`,
       `Name: ${name.trim()}`,
       `Email: ${email.trim()}`,
-      nationality.trim() ? `Nationality: ${nationality.trim()}` : null,
-      visa ? `Visa: ${visa}` : null,
+      sensitiveConsent && nationality.trim() ? `Nationality: ${nationality.trim()}` : null,
+      sensitiveConsent && visa ? `Visa: ${visa}` : null,
       "",
       message.trim(),
     ].filter(Boolean);
@@ -230,6 +235,7 @@ export default function ConnectForm({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-brand focus:ring-brand"
         />
         <span>
+          <span className="font-semibold text-slate-700">{t("consentRequiredTag")}</span>{" "}
           {t("consentPre")}{" "}
           <Link href="/privacy" className="text-brand underline">
             {t("consentPrivacy")}
@@ -239,6 +245,23 @@ export default function ConnectForm({
             {t("consentTerms")}
           </Link>
           {t("consentPost")}
+        </span>
+      </label>
+
+      {/* Separate, optional consent for sensitive info (nationality/visa) — PIPA §23. */}
+      <label className="flex items-start gap-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-600">
+        <input
+          type="checkbox"
+          checked={sensitiveConsent}
+          onChange={(e) => setSensitiveConsent(e.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-brand focus:ring-brand"
+        />
+        <span>
+          <span className="font-semibold text-slate-700">{t("consentOptionalTag")}</span>{" "}
+          {t("sensitiveConsentLabel")}
+          <span className="mt-1 block text-xs text-slate-400">
+            {t("sensitiveConsentNote")}
+          </span>
         </span>
       </label>
 
