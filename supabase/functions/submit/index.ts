@@ -61,8 +61,11 @@ Deno.serve(async (req) => {
   if (!payload || typeof payload !== "object") return json({ error: "bad payload" }, 400);
   if (payload.consent !== true) return json({ error: "consent required" }, 400);
 
-  // 신뢰 가능한 클라이언트 IP: XFF "최좌측"은 클라이언트가 위조 가능(rate-limit 우회 벡터).
-  // x-real-ip(Supabase 엣지 프록시가 설정) 우선, 폴백은 XFF "최우측" — 가장 최근 신뢰 프록시 홉이 추가한 값.
+  // 클라이언트 IP 추정(rate-limit용, best-effort). XFF "최좌측"은 클라가 위조 가능이라 배제.
+  // ⚠️ 배포 전 필수: Supabase Edge 런타임이 신뢰 클라 IP를 어떤 헤더로 주는지는 플랫폼 의존·미확정.
+  //    배포된 함수에 헤더 에코(스푸핑 x-real-ip/XFF 포함)로 1회 실측 확인할 것 — 미검증 시 위조 우회
+  //    또는 헤더 부재 시 "unknown" 단일 버킷 오차단 위험. rate-limit은 보조 방어, 1차 봇 방어=Turnstile(F2).
+  // 현재: x-real-ip 우선 → XFF 최우측(신뢰 프록시가 추가) → "unknown".
   const xff = req.headers.get("x-forwarded-for");
   const rawIp = req.headers.get("x-real-ip")?.trim()
     || xff?.split(",").pop()?.trim()
