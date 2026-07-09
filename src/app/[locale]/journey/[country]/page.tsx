@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getCountries, getCountry, getPurposeGroups } from "@/data";
+import { getCountryFacts, OFFICIAL } from "@/data/countryFacts";
 import { t as localized } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 
@@ -20,9 +21,13 @@ export default async function PurposePage({
   const c = getCountry(country);
   const countryName = c ? localized(c.name, locale) : country;
   const PURPOSE_GROUPS = getPurposeGroups();
+  const facts = getCountryFacts(country);
 
   const cardClass =
     "group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition-all hover:border-brand hover:shadow-md";
+  const factCard =
+    "group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-3.5 text-left shadow-sm transition-all hover:border-brand hover:shadow-md";
+  const factCta = "mt-2 text-sm font-medium text-brand group-hover:underline";
 
   return (
     <div className="space-y-10">
@@ -43,6 +48,66 @@ export default async function PurposePage({
         <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">{t("title")}</h1>
         <p className="mt-2 max-w-2xl text-slate-600">{t("hint")}</p>
       </header>
+
+      {facts && (
+        <section className="rounded-xl border border-brand/20 bg-brand-light/20 p-5">
+          <h2 className="text-lg font-bold text-slate-900">
+            {t("cfTitle", { country: countryName })}
+          </h2>
+          <p className="mt-1 max-w-2xl text-sm text-slate-600">{t("cfIntro")}</p>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {facts.embassyInKorea && (
+              <a
+                href={facts.embassyInKorea}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={factCard}
+              >
+                <span className="font-semibold text-slate-900">
+                  {t("cfEmbassy", { country: countryName })}
+                </span>
+                <span className="mt-1 text-sm text-slate-600">{t("cfEmbassyDesc")}</span>
+                <span className={factCta}>
+                  {t("cfOfficial")} <span aria-hidden>↗</span>
+                </span>
+              </a>
+            )}
+
+            <a href={OFFICIAL.keta} target="_blank" rel="noopener noreferrer" className={factCard}>
+              <span className="font-semibold text-slate-900">{t("cfKeta")}</span>
+              <span className="mt-1 text-sm text-slate-600">{t("cfKetaDesc")}</span>
+              <span className={factCta}>
+                {t("cfKetaLink")} <span aria-hidden>↗</span>
+              </span>
+            </a>
+
+            <a href={OFFICIAL.missions} target="_blank" rel="noopener noreferrer" className={factCard}>
+              <span className="font-semibold text-slate-900">
+                {t("cfMission", { country: countryName })}
+              </span>
+              <span className="mt-1 text-sm text-slate-600">{t("cfMissionDesc")}</span>
+              <span className={factCta}>
+                {t("cfMissionLink")} <span aria-hidden>↗</span>
+              </span>
+            </a>
+          </div>
+
+          {facts.eps && (
+            <p className="mt-4 rounded-lg bg-white/70 p-3 text-xs leading-relaxed text-slate-600">
+              {t("cfEps", { country: countryName })}{" "}
+              <a
+                href={OFFICIAL.eps}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-brand hover:underline"
+              >
+                {t("cfEpsLink")} <span aria-hidden>↗</span>
+              </a>
+            </p>
+          )}
+        </section>
+      )}
 
       {PURPOSE_GROUPS.map((group) => (
         <section key={group.id}>

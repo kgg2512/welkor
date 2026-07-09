@@ -20,6 +20,9 @@ import type { LocalizedText } from "../types";
 
 const HIKOREA = "https://www.hikorea.go.kr/";
 const KETA = "https://www.k-eta.go.kr";
+// E-9 non-professional work is run by the government EPS — link the specific
+// authority, not the generic HiKorea home. (verified HTTP 200, 2026-07-09)
+const EPS = "https://www.eps.go.kr/eo/langMain.eo?langType=en";
 
 export interface PurposeSituation {
   id: string;
@@ -121,7 +124,7 @@ export const PURPOSE_GROUPS: PurposeGroup[] = [
           ko: "이 직종은 정부 고용허가제(EPS)를 통합니다. WelKor는 정보만 제공하며 인력을 알선하지 않습니다.",
         },
         visaCode: "E-9",
-        official: HIKOREA,
+        official: EPS,
       },
     ],
   },

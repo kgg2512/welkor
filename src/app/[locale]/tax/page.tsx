@@ -45,10 +45,26 @@ export default async function TaxPage({
         ))}
       </section>
 
+      {/* Primary: go to the official filing portal (real information destination). */}
+      <section className="rounded-xl border border-slate-200 bg-white p-5">
+        <h2 className="font-semibold text-slate-900">{t("officialTitle")}</h2>
+        <p className="mt-1 text-sm text-slate-600">{t("officialBody")}</p>
+        <a
+          href="https://www.hometax.go.kr"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
+        >
+          {t("officialCta")} <span aria-hidden>↗</span>
+        </a>
+      </section>
+
+      {/* Secondary: connect with a licensed accountant. */}
       <section className="rounded-xl border border-rose-200 bg-rose-50 p-5">
+        <p className="text-sm text-rose-900">{t("connectNote")}</p>
         <Link
           href="/connect?topic=tax"
-          className="inline-block rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
+          className="mt-3 inline-block rounded-lg border border-brand px-4 py-2 text-sm font-medium text-brand hover:bg-brand-light/40"
         >
           {t("connectAccountant")}
         </Link>

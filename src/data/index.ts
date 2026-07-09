@@ -106,6 +106,9 @@ export function getCommunityPosts(): CommunityPost[] {
   if (isStore) return []; // TODO: Supabase 실데이터 배선
   return COMMUNITY_POSTS;
 }
+export function getCommunityPost(id: string): CommunityPost | undefined {
+  return getCommunityPosts().find((p) => p.id === id);
+}
 
 /* ── Finance ───────────────────────────────────────────────────────────────── */
 export function getFinanceCategories(): FinanceCategory[] {

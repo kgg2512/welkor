@@ -22,7 +22,7 @@ export default async function CommunityPage({
         </div>
         <Link
           href="/connect?topic=community"
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
+          className="rounded-lg border border-brand bg-white px-4 py-2 text-sm font-medium text-brand hover:bg-brand-light/40"
         >
           {t("ask")}
         </Link>
@@ -30,7 +30,11 @@ export default async function CommunityPage({
 
       <section className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white">
         {COMMUNITY_POSTS.map((post) => (
-          <article key={post.id} className="flex gap-4 p-5 hover:bg-slate-50">
+          <Link
+            key={post.id}
+            href={`/community/${post.id}`}
+            className="group flex gap-4 p-5 transition-colors hover:bg-slate-50"
+          >
             <span className="text-2xl" aria-hidden>
               {post.flag}
             </span>
@@ -39,7 +43,9 @@ export default async function CommunityPage({
                 <span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
                   {localized(post.category, locale)}
                 </span>
-                <h2 className="font-semibold text-slate-900">{localized(post.title, locale)}</h2>
+                <h2 className="font-semibold text-slate-900 group-hover:text-brand">
+                  {localized(post.title, locale)}
+                </h2>
               </div>
               <p className="mt-1 truncate text-sm text-slate-600">
                 {localized(post.excerpt, locale)}
@@ -48,7 +54,10 @@ export default async function CommunityPage({
                 {post.author} · {post.replies} {t("replies")}
               </p>
             </div>
-          </article>
+            <span className="self-center text-slate-300 transition-colors group-hover:text-brand" aria-hidden>
+              →
+            </span>
+          </Link>
         ))}
       </section>
     </div>

@@ -40,7 +40,20 @@
     "notSureBody": "Check the official visa navigator, or ask people who've done it in the community.",
     "notSureOfficial": "Official visa info (HiKorea)",
     "notSureCommunity": "Ask the community",
-    "back": "← Change country"
+    "back": "← Change country",
+    "cfTitle": "Your path from {country}",
+    "cfIntro": "Official, country-specific starting points. WelKor links you to the sources — always verify your own case there.",
+    "cfEmbassy": "{country}'s embassy in Korea",
+    "cfEmbassyDesc": "Official consular help while you're in Korea.",
+    "cfOfficial": "Official site",
+    "cfKeta": "Short visit? Check if you need a visa",
+    "cfKetaDesc": "The official K-ETA site decides, by nationality, whether you can enter visa-free for a short trip — check yours.",
+    "cfKetaLink": "Check K-ETA (official)",
+    "cfMission": "Apply for your visa in {country}",
+    "cfMissionDesc": "Find the Korean Embassy or Consulate near you to apply.",
+    "cfMissionLink": "Korean missions abroad",
+    "cfEps": "{country} is a government Employment Permit System (EPS) partner country. E-9 non-professional jobs are handled only through the official EPS — WelKor shows information and never places or brokers workers.",
+    "cfEpsLink": "EPS (official)"
   },
   "explore": {
     "title": "Explore Korea",
@@ -175,13 +188,36 @@
     "subtitle": "Guides only — filing is done by a licensed tax accountant (세무사) you connect with here.",
     "appliesTo": "Applies to",
     "connectAccountant": "Connect with a tax accountant",
+    "officialTitle": "File it yourself on Hometax",
+    "officialBody": "Year-end tax settlement (연말정산) and refunds are filed through the National Tax Service's official Hometax portal. Start there to see your own records.",
+    "officialCta": "Open Hometax (official)",
+    "connectNote": "Complex case? We'll connect you with a licensed tax accountant (세무사). WelKor only connects — the accountant does the filing, not us.",
     "disclaimer": "This is general information, not tax advice. Verify your case with a licensed professional."
   },
   "community": {
     "title": "Community",
     "subtitle": "Questions and tips from people who settled before you.",
     "replies": "replies",
-    "ask": "Ask a question"
+    "ask": "Ask a question",
+    "backToList": "← Back to community",
+    "notFound": "That post doesn't exist.",
+    "answers": "Replies",
+    "detailCtaNote": "Have a similar question, or want to reach a licensed professional?",
+    "demoNote": "These are sample community posts for demonstration. Live community posting is coming soon."
+  },
+  "assistant": {
+    "title": "WelKor Assistant",
+    "subtitle": "Which page do you need?",
+    "openLabel": "Open WelKor Assistant",
+    "close": "Close",
+    "greeting": "Hi! Tell me what you're dealing with in Korea — a home, a visa, a job, taxes — and I'll point you to the right page.",
+    "notice": "Info & navigation only, not legal advice. Please don't type personal details — this chat is never saved.",
+    "placeholder": "Ask about visas, housing, jobs…",
+    "send": "Send",
+    "s_visa": "Visa & arrival",
+    "s_housing": "Housing",
+    "s_jobs": "Jobs",
+    "s_tax": "Tax"
   },
   "connect": {
     "title": "Get connected",

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing, isLocale } from "@/i18n/routing";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import AssistantWidget from "@/components/AssistantWidget";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -29,6 +30,7 @@ export default async function LocaleLayout({
         <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">{children}</main>
         <SiteFooter />
       </div>
+      <AssistantWidget />
     </NextIntlClientProvider>
   );
 }

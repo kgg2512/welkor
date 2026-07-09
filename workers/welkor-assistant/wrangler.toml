@@ -1,0 +1,19 @@
+name = "welkor-assistant"
+main = "src/index.js"
+compatibility_date = "2025-07-01"
+account_id = "faafbdce7958e785ec68011ac5675dc1"
+workers_dev = true
+
+# Workers AI native binding — runs @cf/meta/llama-3.1-8b-instruct on Cloudflare's
+# GPUs. No API key, free tier. "self-controlled LLM" at $0.
+[ai]
+binding = "AI"
+
+# Anonymous rate-limit counter (salted-hash IP → hourly count). No chat content
+# is ever stored here; keys auto-expire after 1 hour.
+[[kv_namespaces]]
+binding = "RL"
+id = "3784c034da91454b8ddbd7bedb5ded97"
+
+# RL_SALT is set as a secret (wrangler secret put RL_SALT) so the stored IP
+# hashes cannot be reversed. Not committed to git.

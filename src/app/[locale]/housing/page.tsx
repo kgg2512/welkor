@@ -148,7 +148,7 @@ export default async function HousingPage({
         <p className="text-sm text-slate-700">{t("connectNote")}</p>
         <Link
           href="/connect?topic=housing"
-          className="shrink-0 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark"
+          className="shrink-0 rounded-lg border border-brand bg-white px-4 py-2 text-sm font-medium text-brand hover:bg-brand-light/40"
         >
           {t("connectAgent")}
         </Link>

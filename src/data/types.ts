@@ -72,6 +72,12 @@ export interface TaxGuide {
   appliesTo: string[]; // visa slugs
 }
 
+export interface CommunityReply {
+  author: string;
+  flag: string;
+  body: LocalizedText;
+}
+
 export interface CommunityPost {
   id: string;
   author: string;
@@ -79,5 +85,9 @@ export interface CommunityPost {
   category: LocalizedText;
   title: LocalizedText;
   excerpt: LocalizedText;
+  /** Full post body shown on the detail page. */
+  body: LocalizedText;
   replies: number;
+  /** Sample replies shown on the detail page (demo data). */
+  answers?: CommunityReply[];
 }

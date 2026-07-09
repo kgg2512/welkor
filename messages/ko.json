@@ -40,7 +40,20 @@
     "notSureBody": "공식 비자 안내를 확인하거나, 먼저 경험한 사람들에게 커뮤니티에서 물어보세요.",
     "notSureOfficial": "공식 비자 안내 (하이코리아)",
     "notSureCommunity": "커뮤니티에 질문",
-    "back": "← 국가 변경"
+    "back": "← 국가 변경",
+    "cfTitle": "{country}에서 오시는 분을 위한 안내",
+    "cfIntro": "국가별 공식 출발점입니다. WelKor는 출처로 연결해 드리며, 본인의 경우는 반드시 해당 사이트에서 확인하세요.",
+    "cfEmbassy": "주한 {country} 대사관",
+    "cfEmbassyDesc": "한국 체류 중 공식 영사 지원을 받을 수 있습니다.",
+    "cfOfficial": "공식 사이트",
+    "cfKeta": "단기 방문? 비자 필요 여부 확인",
+    "cfKetaDesc": "단기 방문 시 무비자 입국 가능 여부는 국적별로 공식 K-ETA 사이트에서 결정됩니다 — 본인 국적을 확인하세요.",
+    "cfKetaLink": "K-ETA 확인 (공식)",
+    "cfMission": "{country}에서 비자 신청하기",
+    "cfMissionDesc": "가까운 주재 한국 대사관·영사관을 찾아 신청하세요.",
+    "cfMissionLink": "재외공관 안내",
+    "cfEps": "{country}은(는) 정부 고용허가제(EPS) 협정국입니다. E-9 비전문 취업은 정부 EPS를 통해서만 이루어지며, WelKor는 정보만 제공하고 인력을 알선하지 않습니다.",
+    "cfEpsLink": "EPS (공식)"
   },
   "explore": {
     "title": "한국 여행",
@@ -175,13 +188,36 @@
     "subtitle": "가이드만 제공합니다 — 신고는 여기서 연결되는 세무사가 수행합니다.",
     "appliesTo": "대상",
     "connectAccountant": "세무사와 연결",
+    "officialTitle": "홈택스에서 직접 신고하기",
+    "officialBody": "연말정산과 환급은 국세청 공식 홈택스 포털에서 신고합니다. 본인 기록 확인부터 여기서 시작하세요.",
+    "officialCta": "홈택스 열기 (공식)",
+    "connectNote": "복잡한 경우 면허 세무사와 연결해 드립니다. WelKor는 연결만 하며, 신고는 세무사가 직접 수행합니다.",
     "disclaimer": "일반 정보이며 세무 자문이 아닙니다. 본인의 경우는 면허 전문가에게 확인하세요."
   },
   "community": {
     "title": "커뮤니티",
     "subtitle": "먼저 정착한 사람들의 질문과 팁.",
     "replies": "답글",
-    "ask": "질문하기"
+    "ask": "질문하기",
+    "backToList": "← 커뮤니티로 돌아가기",
+    "notFound": "해당 글을 찾을 수 없습니다.",
+    "answers": "답글",
+    "detailCtaNote": "비슷한 질문이 있거나 면허 전문가와 연결되고 싶으신가요?",
+    "demoNote": "데모용 예시 커뮤니티 글입니다. 실제 커뮤니티 글쓰기는 곧 제공됩니다."
+  },
+  "assistant": {
+    "title": "웰코 도우미",
+    "subtitle": "어떤 페이지가 필요하세요?",
+    "openLabel": "웰코 도우미 열기",
+    "close": "닫기",
+    "greeting": "안녕하세요! 한국에서 필요한 것을 말씀해 주세요 — 집, 비자, 일자리, 세금 등 — 알맞은 페이지로 안내해 드릴게요.",
+    "notice": "정보·안내 전용이며 법률 자문이 아닙니다. 개인정보는 입력하지 마세요 — 이 대화는 저장되지 않습니다.",
+    "placeholder": "비자, 주거, 취업 등을 물어보세요…",
+    "send": "보내기",
+    "s_visa": "비자·입국",
+    "s_housing": "주거",
+    "s_jobs": "취업",
+    "s_tax": "세금"
   },
   "connect": {
     "title": "전문가 연결·문의",
