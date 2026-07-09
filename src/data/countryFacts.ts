@@ -29,7 +29,7 @@ export const OFFICIAL = {
 } as const;
 
 export const COUNTRY_FACTS: Record<string, CountryFacts> = {
-  cn: { eps: false, embassyInKorea: "http://kr.china-embassy.gov.cn" },
+  cn: { eps: true, embassyInKorea: "http://kr.china-embassy.gov.cn" },
   vn: { eps: true, embassyInKorea: "https://vnembassy-seoul.mofa.gov.vn" },
   us: { eps: false, embassyInKorea: "https://kr.usembassy.gov" },
   th: { eps: true, embassyInKorea: "https://seoul.thaiembassy.org" },

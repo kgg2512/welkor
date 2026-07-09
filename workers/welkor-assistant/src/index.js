@@ -107,11 +107,15 @@ const ROUTES = {
 const ROUTE_SLUGS = Object.keys(ROUTES);
 
 // Patterns that indicate a user pasted personal data. Refuse rather than process.
+// Separators are generalized to hyphen / dot / space so grouped numbers like
+// "1234.5678.9012.3456" cannot slip past the filter.
+const SEP = "[-.\\s]";
 const PII_PATTERNS = [
-  /\d{6}[-\s]?\d{7}/, // Korean resident registration number (RRN)
+  new RegExp(`\\d{6}${SEP}?\\d{7}`), // Korean resident registration number (RRN)
   /\b[A-Za-z]{1,2}\d{7,9}\b/, // passport-like (letters + 7–9 digits)
-  /\b\d{7,}\b/, // any run of 7+ digits (card/ID/long numbers)
-  /\b\d{2,4}[-\s]\d{3,4}[-\s]\d{4}\b/, // phone / card grouped digits
+  /\d{7,}/, // any run of 7+ digits (ID / card with no separators)
+  new RegExp(`\\d{2,4}${SEP}\\d{3,4}${SEP}\\d{4}`), // phone / card grouped by any separator
+  new RegExp(`(?:\\d{4}${SEP}){3}\\d{4}`), // 16-digit card in 4 groups (any separator)
 ];
 
 function containsPII(text) {
@@ -224,8 +228,12 @@ async function hashIp(ip, salt) {
 // Stores only the salted hash of the IP; the raw IP is never persisted.
 async function checkRateLimit(env, request) {
   if (!env.RL) return { ok: true }; // KV not bound → skip (fail open)
+  // Fail CLOSED if the IP-hashing salt is missing: without it we cannot store an
+  // anonymized counter, so we deny rather than fall back to a weak known salt
+  // (which would both weaken anonymization and let the limit be bypassed).
+  const salt = env.RL_SALT;
+  if (!salt) return { ok: false };
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
-  const salt = env.RL_SALT || "welkor-assistant-fallback-salt";
   const bucket = Math.floor(Date.now() / (RATE_WINDOW_S * 1000));
   const key = `rl:${bucket}:${await hashIp(ip, salt)}`;
   const current = parseInt((await env.RL.get(key)) || "0", 10);
