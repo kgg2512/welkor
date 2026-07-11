@@ -19,7 +19,7 @@ const nextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://*.functions.supabase.co; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'",
+              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://*.functions.supabase.co https://welkor-assistant.kgg2512.workers.dev; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'",
           },
         ],
       },
