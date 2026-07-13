@@ -12,9 +12,14 @@ import type { LocalizedText } from "@/data/types";
  * execution, access logs (incl. client IP) and usage analytics are processed
  * on US infrastructure. This IS a cross-border transfer and is disclosed in
  * PRIVACY §4 per PIPA §28-8 (recipient, country, items, purpose, retention).
+ *
+ * The AI assistant widget additionally sends the user's free-text question to a
+ * Cloudflare Worker (Cloudflare Inc., US / global edge network, Workers AI) to
+ * generate a reply; the conversation is not stored. This is a second cross-border
+ * transfer and is also disclosed in PRIVACY §4 per PIPA §28-8.
  */
 
-export const LEGAL_UPDATED = "2026-07-07";
+export const LEGAL_UPDATED = "2026-07-14";
 export const LEGAL_CONTACT = "kgg2512@gmail.com";
 export const LEGAL_ENTITY = "G2 Company Ltd";
 
@@ -84,12 +89,12 @@ export const PRIVACY: LegalSection[] = [
         ko: "특정 전문가와의 연결에 동의하신 경우에 한해 해당 전문가에게 정보를 제공합니다. WelKor는 귀하와 전문가 간 계약의 당사자가 아닙니다.",
       },
       {
-        en: "Processing consignment (처리위탁): We entrust the storage and operation of your data to the following processors, under data-processing terms — (1) Supabase — database storage; region Seoul, Republic of Korea (data stored inside Korea); (2) Vercel Inc. — application hosting and usage analytics.",
-        ko: "처리위탁: 아래 수탁사에 데이터의 저장·운영을 처리위탁 계약에 따라 위탁합니다 — (1) Supabase — 데이터베이스 저장, 서울(대한민국) 리전(데이터는 국내 보관); (2) Vercel Inc. — 애플리케이션 호스팅 및 이용 통계.",
+        en: "Processing consignment (처리위탁): We entrust the storage and operation of your data to the following processors, under data-processing terms — (1) Supabase — database storage; region Seoul, Republic of Korea (data stored inside Korea); (2) Vercel Inc. — application hosting and usage analytics; (3) Cloudflare Inc. — AI assistant (chat widget): the text you type into the assistant is sent to a Cloudflare Worker (Workers AI) to generate a reply. The conversation is not stored; the text is processed transiently only to answer you.",
+        ko: "처리위탁: 아래 수탁사에 데이터의 저장·운영을 처리위탁 계약에 따라 위탁합니다 — (1) Supabase — 데이터베이스 저장, 서울(대한민국) 리전(데이터는 국내 보관); (2) Vercel Inc. — 애플리케이션 호스팅 및 이용 통계; (3) Cloudflare Inc. — AI 어시스턴트(채팅 위젯): 어시스턴트에 입력하신 문의 텍스트가 Cloudflare Worker(Workers AI)로 전송되어 응답을 생성합니다. 대화 내용은 저장되지 않으며, 답변 생성을 위해 일시적으로만 처리됩니다.",
       },
       {
-        en: "Cross-border transfer (국외이전, PIPA §28-8): Because the app is hosted on Vercel Inc., some personal data is transferred to and processed in the United States. • Recipient: Vercel Inc. • Country: United States • Items: access logs including client IP address and User-Agent, and aggregate usage-analytics data • Purpose: web hosting, service operation, and usage statistics • Retention/use period: for the duration of the hosting/analytics service (or until you withdraw consent). By using this service you are notified of and consent to this transfer. The database itself (name, email, nationality, visa, message you submit) remains stored in Korea (Supabase, Seoul).",
-        ko: "국외이전(개인정보보호법 §28-8): 본 서비스는 Vercel Inc.가 호스팅하므로 일부 개인정보가 미국으로 이전·처리됩니다. • 이전받는 자: Vercel Inc. • 이전 국가: 미국 • 이전 항목: 접속 로그(클라이언트 IP 주소·User-Agent) 및 집계 이용 통계 데이터 • 이전 목적: 웹 호스팅·서비스 운영·이용 통계 • 보유·이용 기간: 호스팅/통계 서비스 이용 기간(또는 동의 철회 시까지). 본 서비스를 이용하심으로써 위 국외 이전을 고지받고 이에 동의하는 것으로 봅니다. 귀하가 제출하는 데이터베이스 정보(이름·이메일·국적·비자·문의 내용)는 국내(Supabase 서울)에 저장됩니다.",
+        en: "Cross-border transfer (국외이전, PIPA §28-8): Some personal data is transferred to and processed outside Korea. (a) Recipient: Vercel Inc. • Country: United States • Items: access logs including client IP address and User-Agent, and aggregate usage-analytics data • Purpose: web hosting, service operation, and usage statistics • Retention/use period: for the duration of the hosting/analytics service (or until you withdraw consent). (b) Recipient: Cloudflare Inc. • Country: United States / global edge network • Items: the free-text you type into the AI assistant, which — depending on what you choose to write — may include your nationality or visa situation • Purpose: generating the AI assistant's reply via Workers AI • Retention/use period: processed transiently to answer you and not stored. By using this service (and the assistant) you are notified of and consent to these transfers. The database itself (name, email, nationality, visa, message you submit through forms) remains stored in Korea (Supabase, Seoul).",
+        ko: "국외이전(개인정보보호법 §28-8): 일부 개인정보가 국외로 이전·처리됩니다. (가) 이전받는 자: Vercel Inc. • 이전 국가: 미국 • 이전 항목: 접속 로그(클라이언트 IP 주소·User-Agent) 및 집계 이용 통계 데이터 • 이전 목적: 웹 호스팅·서비스 운영·이용 통계 • 보유·이용 기간: 호스팅/통계 서비스 이용 기간(또는 동의 철회 시까지). (나) 이전받는 자: Cloudflare Inc. • 이전 국가: 미국/글로벌 엣지 네트워크 • 이전 항목: AI 어시스턴트에 입력하신 자유 텍스트(이용자가 작성하는 내용에 따라 국적·비자 상황 등이 포함될 수 있음) • 이전 목적: Workers AI를 통한 AI 어시스턴트 응답 생성 • 보유·이용 기간: 답변 생성을 위해 일시적으로 처리되며 저장되지 않음. 본 서비스(및 어시스턴트)를 이용하심으로써 위 국외 이전을 고지받고 이에 동의하는 것으로 봅니다. 귀하가 양식으로 제출하는 데이터베이스 정보(이름·이메일·국적·비자·문의 내용)는 국내(Supabase 서울)에 저장됩니다.",
       },
     ],
   },
