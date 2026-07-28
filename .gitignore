@@ -14,3 +14,6 @@ next-env.d.ts
 .server.log
 
 .vercel
+
+# Supabase CLI 로컬 링크 아티팩트(프로젝트 ref만, 시크릿 아님) — 커밋 불필요
+supabase/.temp/
