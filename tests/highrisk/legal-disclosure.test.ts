@@ -18,12 +18,14 @@ function flatten(locale: "en" | "ko"): string {
   ).join("\n\n");
 }
 
+// 2026-07-31 M5-④: 부분일치(/Cloudflare/)는 `CloudflareX` 같은 훼손을 통과시킨다
+// (뮤테이션 실측으로 발견). 단어 경계()로 조여 수령인 이름 훼손도 잡는다.
 describe("PRIVACY — 국외이전 고지가 존재한다 (PIPA §28-8)", () => {
   it("두 수령인(Vercel·Cloudflare)이 한국어·영어 모두에 명시된다", () => {
     for (const locale of ["en", "ko"] as const) {
       const text = flatten(locale);
-      expect(text, `${locale}: Vercel 국외이전 고지가 사라졌다`).toMatch(/Vercel/i);
-      expect(text, `${locale}: Cloudflare 국외이전 고지가 사라졌다`).toMatch(/Cloudflare/i);
+      expect(text, `${locale}: Vercel 국외이전 고지가 사라졌다`).toMatch(/Vercel/i);
+      expect(text, `${locale}: Cloudflare 국외이전 고지가 사라졌다`).toMatch(/Cloudflare/i);
     }
   });
 
